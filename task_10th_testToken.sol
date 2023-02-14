@@ -8,6 +8,8 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 contract TestToken is ERC20, Ownable {
     using SafeMath for uint256;
     uint ttotalSupply;
+    uint maxsupply = SafeMath.mul(100,10 ** decimals());
+    address public oowner = msg.sender;
 
     mapping (address => uint256) public balances;
 
@@ -21,6 +23,6 @@ contract TestToken is ERC20, Ownable {
 
         ttotalSupply = ttotalSupply.add(amount);
         balances[to] = balances[to].add(amount);
-        require(ttotalSupply<=1000000,"totalsupply should be lessthan 1000000");
+        require(ttotalSupply<=maxsupply,"totalsupply should be lessthan 1000000");
     }
 }
